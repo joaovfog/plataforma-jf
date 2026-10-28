@@ -1,0 +1,174 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ============================================================
+   Design system — Plataforma JF
+   Paletas: Atlântico (ação/marca) · Areia (neutros) · Duna (acento raro)
+   Status do espelho: tokens fixos, nunca reaproveitar para outra função.
+   ============================================================ */
+
+:root {
+  /* shadcn/ui — modo claro */
+  --background: #faf9f6;
+  --foreground: #1d1c18;
+  --card: #ffffff;
+  --card-foreground: #1d1c18;
+  --popover: #ffffff;
+  --popover-foreground: #1d1c18;
+  --primary: #175a67;
+  --primary-foreground: #f5fbfc;
+  --secondary: #f1efea;
+  --secondary-foreground: #45423a;
+  --muted: #f1efea;
+  --muted-foreground: #7d786c;
+  --accent: #ebf4f5;
+  --accent-foreground: #124751;
+  --destructive: #be3131;
+  --destructive-foreground: #fdf4f4;
+  --border: #e4e1d8;
+  --input: #e4e1d8;
+  --ring: #175a67;
+  --radius: 0.75rem;
+
+  /* Status de unidade (espelho de vendas) */
+  --status-disponivel-bg: #e6f4e8;
+  --status-disponivel-fg: #1e7a34;
+  --status-disponivel-border: #9fd3ab;
+  --status-reservada-bg: #fcf1d6;
+  --status-reservada-fg: #8a5a00;
+  --status-reservada-border: #ebcb7b;
+  --status-vendida-bg: #fbe5e5;
+  --status-vendida-fg: #a32626;
+  --status-vendida-border: #f0afaf;
+  --status-bloqueada-bg: #f1efea;
+  --status-bloqueada-fg: #5c584e;
+  --status-bloqueada-border: #cfcbbf;
+}
+
+.dark {
+  --background: #14130f;
+  --foreground: #f1efea;
+  --card: #1d1c18;
+  --card-foreground: #f1efea;
+  --popover: #1d1c18;
+  --popover-foreground: #f1efea;
+  --primary: #6fb0ba;
+  --primary-foreground: #08262e;
+  --secondary: #2e2c26;
+  --secondary-foreground: #e4e1d8;
+  --muted: #2e2c26;
+  --muted-foreground: #a8a395;
+  --accent: #0d3640;
+  --accent-foreground: #cfe6e9;
+  --destructive: #e05b5b;
+  --destructive-foreground: #2b0d0d;
+  --border: #2e2c26;
+  --input: #2e2c26;
+  --ring: #6fb0ba;
+
+  --status-disponivel-bg: #142e1b;
+  --status-disponivel-fg: #86d99a;
+  --status-disponivel-border: #245c33;
+  --status-reservada-bg: #33270c;
+  --status-reservada-fg: #efc65c;
+  --status-reservada-border: #6b5115;
+  --status-vendida-bg: #331414;
+  --status-vendida-fg: #f09b9b;
+  --status-vendida-border: #6e2323;
+  --status-bloqueada-bg: #26241f;
+  --status-bloqueada-fg: #a8a395;
+  --status-bloqueada-border: #45423a;
+}
+
+@theme inline {
+  /* Fontes (variáveis definidas via next/font em layout.tsx) */
+  --font-sans: var(--font-instrument), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-bricolage), var(--font-instrument), sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
+
+  /* Mapeamento shadcn → utilitários Tailwind (bg-background, text-primary...) */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Rampas da marca — uso direto: bg-atlantico-600, text-areia-500 etc. */
+  --color-atlantico-50: #ebf4f5;
+  --color-atlantico-100: #cfe6e9;
+  --color-atlantico-200: #a3cfd5;
+  --color-atlantico-300: #6fb0ba;
+  --color-atlantico-400: #3d8b98;
+  --color-atlantico-500: #22707e;
+  --color-atlantico-600: #175a67;
+  --color-atlantico-700: #124751;
+  --color-atlantico-800: #0d3640;
+  --color-atlantico-900: #08262e;
+  --color-atlantico-950: #051a20;
+  --color-areia-50: #faf9f6;
+  --color-areia-100: #f1efea;
+  --color-areia-200: #e4e1d8;
+  --color-areia-300: #cfcbbf;
+  --color-areia-400: #a8a395;
+  --color-areia-500: #7d786c;
+  --color-areia-600: #5c584e;
+  --color-areia-700: #45423a;
+  --color-areia-800: #2e2c26;
+  --color-areia-900: #1d1c18;
+  --color-areia-950: #14130f;
+  --color-duna-100: #f3e8d3;
+  --color-duna-300: #dcc08a;
+  --color-duna-500: #b08a45;
+  --color-duna-700: #7a5c27;
+
+  /* Status do espelho — bg-status-disponivel etc. */
+  --color-status-disponivel: var(--status-disponivel-bg);
+  --color-status-disponivel-fg: var(--status-disponivel-fg);
+  --color-status-disponivel-border: var(--status-disponivel-border);
+  --color-status-reservada: var(--status-reservada-bg);
+  --color-status-reservada-fg: var(--status-reservada-fg);
+  --color-status-reservada-border: var(--status-reservada-border);
+  --color-status-vendida: var(--status-vendida-bg);
+  --color-status-vendida-fg: var(--status-vendida-fg);
+  --color-status-vendida-border: var(--status-vendida-border);
+  --color-status-bloqueada: var(--status-bloqueada-bg);
+  --color-status-bloqueada-fg: var(--status-bloqueada-fg);
+  --color-status-bloqueada-border: var(--status-bloqueada-border);
+
+  --radius-sm: calc(var(--radius) - 6px);
+  --radius-md: calc(var(--radius) - 3px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+  h1, h2, h3 {
+    @apply font-display tracking-tight;
+  }
+  /* Dados numéricos alinhados (preços, metragens, nº de unidade) */
+  .num {
+    @apply font-mono tabular-nums;
+  }
+}
